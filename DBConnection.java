@@ -1,13 +1,34 @@
+package com.java.jdbc;
+
 import java.sql.*;
+
 public class DBConnection {
-	public static void main(String args[]) {
-		oracle.jdbc.driver.OracleDrivr driver = new oracle.jdbc.driver.OracleDriver( );
-		//Register the jdbc driver s\w
-		DriverManager.registerDriver(driver);
-		Connection con = DriverManager.getConnection("oracle:jdbc:thin:@localhost:1521:ORCL","system","tiger");
-		if(con == null)
-		System.out.println("Connection is not eastiblish");
-		else
-		System.out.println("Connection is eastiblish");
+	public static void main(String args[]) throws Exception {
+		String jdbcDriver = "oracle.jdbc.OracleDriver";
+		String databaseUrl = "jdbc:oracle:thin:@localhost:1522:ORCL";
+
+		// Database credentials
+		String username = "system";
+		String password = "tiger";
+
+		Connection connection = null;
+		try {
+			// Register JDBC driver
+			Class.forName(jdbcDriver);
+
+			// Open a connection
+			connection = DriverManager.getConnection(databaseUrl, username, password);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// Close the resources
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
