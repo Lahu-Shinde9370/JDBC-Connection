@@ -5,7 +5,7 @@ import java.sql.*;
 public class DBConnection {
 	public static void main(String args[]) throws Exception {
 		String jdbcDriver = "oracle.jdbc.OracleDriver";
-		String databaseUrl = "jdbc:oracle:thin:@localhost:1522:ORCL";
+		String databaseUrl = "jdbc:oracle:thin:@localhost:1521:ORCL";
 
 		// Database credentials
 		String username = "system";
